@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>App Redirect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.20.15/babel.min.js"></script>
+    <script type="text/babel">
+      function RedirectApp() {
+        const userAgent =
+          navigator.userAgent || navigator.vendor || window.opera;
+        const isIOS =
+          /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(userAgent);
+
+        if (isIOS) {
+          window.location.href =
+            'https://apps.apple.com/uz/app/neva/id1591381827';
+        } else if (isAndroid) {
+          window.location.href =
+            'https://play.google.com/store/apps/details?id=uz.neva.kidya&hl=ru';
+        }
+
+        return (
+          <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="text-center">
+              <h1 className="text-2xl font-bold mb-4">
+                Redirecting to your app store...
+              </h1>
+              <p className="text-gray-600">
+                Please wait while we redirect you...
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(
+        document.getElementById('root'),
+      );
+      root.render(<RedirectApp />);
+    </script>
+  </body>
+</html>
