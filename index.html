@@ -24,12 +24,41 @@
 
         if (isIOS) {
           window.location.href =
-            //appstore
             'https://apps.apple.com/uz/app/staffly-et/id6738784749';
-        } else if (isAndroid) {
-          window.location.href =
-            //googleplay
-            'https://hrms.etc.uz/auth/login';
+        }
+
+        const handleDownloadApk = () => {
+          // Путь к APK файлу, предполагается, что он находится в корне или в папке public
+          const apkUrl =
+            'https://drive.google.com/file/d/14nrgYOrZjOI8PluJj9CZiktIN7lk9uLt/view?usp=sharing';
+          const link = document.createElement('a');
+          link.href = apkUrl;
+          link.download = 'app-release.apk';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        };
+
+        if (isAndroid) {
+          return (
+            <div className="flex items-center justify-center min-h-screen bg-gray-100">
+              <div className="text-center">
+                <h1 className="text-2xl font-bold mb-4">
+                  Download Our App
+                </h1>
+                <p className="text-gray-600 mb-6">
+                  Click the button below to download the APK file for
+                  Android.
+                </p>
+                <button
+                  onClick={handleDownloadApk}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Download APK
+                </button>
+              </div>
+            </div>
+          );
         }
 
         return (
